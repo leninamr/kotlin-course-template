@@ -11,7 +11,10 @@ class AlignedTextTests {
 
     @Test
     fun testAlignmentLeft() {
-        assertEquals(alignText("one two three four five six", 8, Alignment.LEFT), "one two\nthree\nfour\nfive six\n")
+        assertEquals(
+            alignText("one two three four five six", 8, Alignment.LEFT),
+            "one two\nthree\nfour\nfive six\n"
+        )
     }
 
     @Test
