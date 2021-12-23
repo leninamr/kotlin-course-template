@@ -62,20 +62,96 @@ class Matrix(
         }
         return result
     }
+    
+    operator fun minusAssign(other: Matrix) {
+        if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
+            "The dimensions of matrices are not converge"
+        )
+        else {
+            for (i in matrix.indices)
+               for (j in matrix[i].indices)
+                    this[i, j] -= other[i, j]
+        }
+    }
+    
     operator fun times(scalar: Double) {
-        TODO("Not yet implemented")
+        val result = Matrix(matrix)
+        for (i in matrix.indices)
+            for (j in matrix[i].indices)
+                this[i, j] = scalar * this[i, j]
+        return result
     }
 
     operator fun timesAssign(scalar: Double) {
-        TODO("Not yet implemented")
+        for (i in matrix.indices)
+            for (j in matrix[i].indices)
+                this[i, j] = scalar * this[i, j]
+    }
+
+    operator fun times(other: Matrix): Matrix {
+        val result = Matrix(other.matrix)
+        if (other.matrix.size != matrix[0].size) throw IllegalArgumentException(
+            "The dimensions of matrices are wrong"
+        )
+        else {
+            for (i in matrix.indices)
+                for (j in matrix[i].indices) {
+                    for (k in matrix[i].indices) {
+                        result[i, j] += this[i, k] * other[k, j]
+                    }
+                }
+        }
+        return result
     }
 
     operator fun unaryMinus(): Matrix {
-        TODO("Not yet implemented")
+        return this.times(-1.0)
     }
 
     operator fun unaryPlus(): Matrix {
         return this
     }
-    // ...
+
+    operator fun timesAssign(other: Matrix) {
+        this.times(other)
+    }
+
+    operator fun div(scalar: Double): Matrix {
+        val result = Matrix(matrix)
+        for (i in matrix.indices)
+            for (j in matrix[i].indices)
+                this[i, j] = this[i, j] / scalar
+        return result
+    }
+
+    operator fun divAssign(scalar: Double) {
+        for (i in matrix.indices)
+            for (j in matrix[i].indices)
+                this[i, j] = this[i, j] / scalar
+    }
+
+    override fun toString(): String {
+        var out = ""
+        for (i in matrix.indices) {
+            for (j in matrix[0].indices)
+                out += matrix[i][j].toString() + " "
+            out += "\n"
+        }
+        return out
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Matrix
+
+        if (!matrix.contentDeepEquals(other.matrix)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return matrix.contentDeepHashCode()
+    }
 }
