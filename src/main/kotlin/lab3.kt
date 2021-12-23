@@ -7,78 +7,78 @@ interface Shape {
     fun calcPerimeter(): Double
 }
 
-class Circle(val Radius: Double) : Shape {
+class Circle(val radius: Double) : Shape {
     init {
-        if (Radius < 0) {
+        if (radius < 0) {
             throw IllegalArgumentException("Incorrect size of the radius")
         }
     }
 
     override fun calcArea(): Double {
-        return PI * Radius * Radius
+        return PI * radius * radius
     }
 
     override fun calcPerimeter(): Double {
-        return 2 * PI * Radius
+        return 2 * PI * radius
     }
 }
 
-class Square(val Side: Double) : Shape {
+class Square(val side: Double) : Shape {
     init {
-        if (Side < 0) {
+        if (side < 0) {
             throw IllegalArgumentException("Incorrect side size of the square")
         }
     }
 
     override fun calcArea(): Double {
-        return Side * Side
+        return side * side
     }
 
     override fun calcPerimeter(): Double {
-        return 4 * Side
+        return 4 * side
     }
 }
 
-class Rectangle(val Side_a: Double, val Side_b: Double) : Shape {
+class Rectangle(val sideA: Double, val sideB: Double) : Shape {
     init {
-        if ((Side_a < 0) or (Side_b < 0)) {
+        if ((sideA < 0) or (sideB < 0)) {
             throw IllegalArgumentException("Incorrect side size of the rectangle")
         }
     }
 
     override fun calcArea(): Double {
-        return Side_a * Side_b
+        return sideA * sideB
     }
 
     override fun calcPerimeter(): Double {
-        return 2 * Side_a + 2 * Side_b
+        return 2 * sideA + 2 * sideB
     }
 }
 
-class Triangle(val Side_a: Double, val Side_b: Double, val Side_c: Double) : Shape {
+class Triangle(val sideA: Double, val sideB: Double, val sideC: Double) : Shape {
     init {
-        if ((Side_a + Side_b < Side_c) or (Side_a + Side_c < Side_b) or (Side_b + Side_c < Side_a))
+        if ((sideA + sideB < sideC) or (sideA + sideC < sideB) or (sideB + sideC < sideA))
             throw IllegalArgumentException("This triangle can't exist")
-        if ((Side_a < 0) or (Side_b < 0) or (Side_c < 0)) {
+        if ((sideA < 0) or (sideB < 0) or (sideC < 0)) {
             throw IllegalArgumentException("Incorrect side size of the triangle")
         }
     }
 
     override fun calcArea(): Double {
         val p = calcPerimeter() / 2
-        return sqrt(p * (p - Side_a) * (p - Side_b) * (p - Side_c))
+        return sqrt(p * (p - sideA) * (p - sideB) * (p - sideC))
     }
 
     override fun calcPerimeter(): Double {
-        return Side_a + Side_b + Side_c
+        return sideA + sideB + sideC
     }
 }
 
 interface ShapeFactory {
-    fun createCircle(Radius: Double): Circle
-    fun createSquare(Side: Double): Square
-    fun createRectangle(Side_a: Double, Side_b: Double): Rectangle
-    fun createTriangle(Side_a: Double, Side_b: Double, Side_c: Double): Triangle
+    fun createCircle(radius: Double): Circle
+    fun createSquare(side: Double): Square
+    fun createRectangle(sideA: Double, sideB: Double): Rectangle
+    fun createTriangle(sideA: Double, sideB: Double, sideC: Double): Triangle
 
     fun createRandomCircle(): Circle
     fun createRandomSquare(): Square
@@ -89,20 +89,20 @@ interface ShapeFactory {
 }
 
 class ShapeFactoryImpl : ShapeFactory {
-    override fun createCircle(Radius: Double): Circle {
-        return Circle(Radius)
+    override fun createCircle(radius: Double): Circle {
+        return Circle(radius)
     }
 
-    override fun createSquare(Side: Double): Square {
-        return Square(Side)
+    override fun createSquare(side: Double): Square {
+        return Square(side)
     }
 
-    override fun createRectangle(Side_a: Double, Side_b: Double): Rectangle {
-        return Rectangle(Side_a, Side_b)
+    override fun createRectangle(sideA: Double, sideB: Double): Rectangle {
+        return Rectangle(sideA, sideB)
     }
 
-    override fun createTriangle(Side_a: Double, Side_b: Double, Side_c: Double): Triangle {
-        return Triangle(Side_a, Side_b, Side_c)
+    override fun createTriangle(sideA: Double, sideB: Double, sideC: Double): Triangle {
+        return Triangle(sideA, sideB, sideC)
     }
 
     override fun createRandomCircle(): Circle {
@@ -118,11 +118,10 @@ class ShapeFactoryImpl : ShapeFactory {
     }
 
     override fun createRandomTriangle(): Triangle {
-        return Triangle(
-            Random.nextDouble(0.0, Double.MAX_VALUE),
-            Random.nextDouble(0.0, Double.MAX_VALUE),
-            Random.nextDouble(0.0, Double.MAX_VALUE)
-        )
+        val sideA = Random.nextDouble(0.0, Double.MAX_VALUE)
+        val sideB = Random.nextDouble(0.0, Double.MAX_VALUE)
+        val sideC = Random.nextDouble(kotlin.math.max(sideA, sideB) - kotlin.math.min(sideA, sideB), sideA + sideB)
+        return Triangle(sideA, sideB, sideC)
     }
 
     override fun createRandomShape(): Shape {

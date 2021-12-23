@@ -18,7 +18,7 @@ fun alignText(
     }
 }
 
-fun toText(listOfText: ArrayList<String>): String {
+private fun toText(listOfText: MutableList<String>): String {
     var text = ""
     for (string in listOfText) {
         text += "$string\n"
@@ -26,9 +26,9 @@ fun toText(listOfText: ArrayList<String>): String {
     return text
 }
 
-fun alignmentLeft(text: String, lineWidth: Int): ArrayList<String> {
+private fun alignmentLeft(text: String, lineWidth: Int): MutableList<String> {
     val words = text.split(" ").toMutableList()
-    val newText: ArrayList<String> = arrayListOf()
+    val newText: MutableList<String> = mutableListOf()
     var currentString = ""
     var i = 0
     while (i <= words.lastIndex) {
@@ -63,9 +63,9 @@ fun alignmentLeft(text: String, lineWidth: Int): ArrayList<String> {
     return newText
 }
 
-fun alignmentRight(text: String, lineWidth: Int): ArrayList<String> {
+private fun alignmentRight(text: String, lineWidth: Int): MutableList<String> {
     val alignedLeftText = alignmentLeft(text, lineWidth)
-    val newText: ArrayList<String> = arrayListOf()
+    val newText: MutableList<String> = mutableListOf()
     //putting extra spaces into beginning of string to make it aligned at right
     for (string in alignedLeftText) {
         newText.add("".padStart((lineWidth - string.length), ' ') + string)
@@ -73,9 +73,9 @@ fun alignmentRight(text: String, lineWidth: Int): ArrayList<String> {
     return newText
 }
 
-fun alignmentCenter(text: String, lineWidth: Int): ArrayList<String> {
+private fun alignmentCenter(text: String, lineWidth: Int): MutableList<String> {
     val alignedLeftText = alignmentLeft(text, lineWidth)
-    val newText: ArrayList<String> = arrayListOf()
+    val newText: MutableList<String> = mutableListOf()
     //putting extra spaces into beginning and ending of string to make it aligned at center
     for (string in alignedLeftText) {
         newText.add(
