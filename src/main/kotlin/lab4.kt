@@ -6,6 +6,7 @@ class Matrix(
     init {
         if (initMatrix.isEmpty() or initMatrix[0].isEmpty()) throw IllegalArgumentException("The entered matrix is empty")
         val length = initMatrix[0].size
+        matrix = initMatrix.clone()
         for (i in initMatrix.indices) {
             if (initMatrix[i].size != length) throw IllegalArgumentException("The entered matrix has wrong size")
             matrix[i] = initMatrix[i].clone()
@@ -62,23 +63,23 @@ class Matrix(
         }
         return result
     }
-    
+
     operator fun minusAssign(other: Matrix) {
         if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
             "The dimensions of matrices are not converge"
         )
         else {
             for (i in matrix.indices)
-               for (j in matrix[i].indices)
+                for (j in matrix[i].indices)
                     this[i, j] -= other[i, j]
         }
     }
-    
-    operator fun times(scalar: Double) {
+
+    operator fun times(scalar: Double): Matrix {
         val result = Matrix(matrix)
         for (i in matrix.indices)
             for (j in matrix[i].indices)
-                this[i, j] = scalar * this[i, j]
+                result[i, j] = scalar * this[i, j]
         return result
     }
 
@@ -89,11 +90,12 @@ class Matrix(
     }
 
     operator fun times(other: Matrix): Matrix {
-        val result = Matrix(other.matrix)
+        val result: Matrix
         if (other.matrix.size != matrix[0].size) throw IllegalArgumentException(
             "The dimensions of matrices are wrong"
         )
         else {
+            result = Matrix(Array(matrix.size) { Array(other.matrix[0].size) { 0.0 } })
             for (i in matrix.indices)
                 for (j in matrix[i].indices) {
                     for (k in matrix[i].indices) {
@@ -120,7 +122,7 @@ class Matrix(
         val result = Matrix(matrix)
         for (i in matrix.indices)
             for (j in matrix[i].indices)
-                this[i, j] = this[i, j] / scalar
+                result[i, j] = this[i, j] / scalar
         return result
     }
 

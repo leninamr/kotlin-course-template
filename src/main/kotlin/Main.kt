@@ -1,9 +1,13 @@
 fun main() {
-    //val str = "asd vb fasj fg hj bn mj"
-    //val str = "TestingWiiiithVeeeeryLOOOOngWord"
-    //print(alignText(str, 7, Alignment.LEFT))
-    //print("hell")
+    /*
+    //1st lab
+    val str = "asd vb fasj fg hj bn mj"
+    val str = "TestingWiiiithVeeeeryLOOOOngWord"
+    print(alignText(str, 7, Alignment.LEFT))
+    print("hell")
     // Try adding program arguments at Run/Debug configuration
+
+    //3rd lab
     val ListOfShapes = listOf<Shape>(
         Circle(5.0),
         Square(10.0),
@@ -31,4 +35,33 @@ fun main() {
     println("The sum of perimeters of all shapes is $sumPerimeter")
     println("The shape with largest area is ${maxArea::class.java.simpleName}")
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
+     */
+
+    //4th lab
+    val matrixA = Matrix(
+        arrayOf(
+            arrayOf(1.0, 2.0),
+            arrayOf(3.0, 4.0)
+        )
+    )
+    val matrixB = Matrix(
+        arrayOf(
+            arrayOf(10.0, 20.0),
+            arrayOf(30.0, 40.0)
+        )
+    )
+    println("Matrix A:\n" + matrixA.toString())
+    println("Matrix B:\n" + matrixB.toString())
+    println("A + B =\n" + (matrixA + matrixB).toString())
+    println("A - B =\n" + (matrixA - matrixB).toString())
+    println("A * B =\n" + (matrixA * matrixB).toString())
+    println("-B =\n" + (-matrixB).toString())
+    println("+B =\n" + (+matrixB).toString())
+    println("5 * A =\n" + (matrixA * 5.0).toString())
+    println("B / 10 =\n" + (matrixB / 10.0).toString())
+    println("Is A = B?")
+    println(matrixA == matrixB)
+    matrixA += matrixB
+    println("\nMatrix A+=B :\n" + matrixA.toString())
+
 }
