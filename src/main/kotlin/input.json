@@ -1,0 +1,21 @@
+[
+  {
+    "type": "Circle",
+    "radius": 3.0
+  },
+  {
+    "type": "Square",
+    "side": 10
+  },
+  {
+    "type": "Rectangle",
+    "sideA": 4,
+    "sideB": 6
+  },
+  {
+    "type": "Triangle",
+    "sideA": 4,
+    "sideB": 6,
+    "sideC": 5
+  }
+]

@@ -1,4 +1,7 @@
+import kotlinx.serialization.Serializable
 import kotlin.math.PI
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 import kotlin.random.Random
 
@@ -7,6 +10,7 @@ interface Shape {
     fun calcPerimeter(): Double
 }
 
+@Serializable
 class Circle(val radius: Double) : Shape {
     init {
         if (radius < 0) {
@@ -23,6 +27,7 @@ class Circle(val radius: Double) : Shape {
     }
 }
 
+@Serializable
 class Square(val side: Double) : Shape {
     init {
         if (side < 0) {
@@ -39,6 +44,7 @@ class Square(val side: Double) : Shape {
     }
 }
 
+@Serializable
 class Rectangle(val sideA: Double, val sideB: Double) : Shape {
     init {
         if ((sideA < 0) or (sideB < 0)) {
@@ -55,6 +61,7 @@ class Rectangle(val sideA: Double, val sideB: Double) : Shape {
     }
 }
 
+@Serializable
 class Triangle(val sideA: Double, val sideB: Double, val sideC: Double) : Shape {
     init {
         if ((sideA + sideB < sideC) or (sideA + sideC < sideB) or (sideB + sideC < sideA))
@@ -120,7 +127,7 @@ class ShapeFactoryImpl : ShapeFactory {
     override fun createRandomTriangle(): Triangle {
         val sideA = Random.nextDouble(0.0, Double.MAX_VALUE)
         val sideB = Random.nextDouble(0.0, Double.MAX_VALUE)
-        val sideC = Random.nextDouble(kotlin.math.max(sideA, sideB) - kotlin.math.min(sideA, sideB), sideA + sideB)
+        val sideC = Random.nextDouble(max(sideA, sideB) - min(sideA, sideB), sideA + sideB)
         return Triangle(sideA, sideB, sideC)
     }
 

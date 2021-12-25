@@ -66,6 +66,7 @@ fun main() {
     println("\nMatrix A+=B :\n" + matrixA.toString())
 
     */
+    /*
     //lab 6
     val shapes = ShapeCollector<Shape>()
     shapes.add(Circle(5.0))
@@ -130,4 +131,12 @@ fun main() {
     for (shape in squares) {
         println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
     }
+
+     */
+    //lab 7
+    val path = "/Users/marina/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
+    var listOfShapes = listOf<Shape>()
+    listOfShapes = SerializeShapes.decode(FileIO.read(path))
+
+
 }
