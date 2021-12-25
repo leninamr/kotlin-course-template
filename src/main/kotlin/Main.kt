@@ -79,7 +79,7 @@ fun main() {
         Triangle(5.0, 6.0, 7.0)
     ))
 
-    val result = shapes.getAll()
+    var result = shapes.getAll()
     println("All shapes:")
     for (shape in result) {
         println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
