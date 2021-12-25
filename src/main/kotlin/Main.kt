@@ -84,4 +84,50 @@ fun main() {
     for (shape in result) {
         println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
     }
+    result = shapes.getAllSorted(ShapeComparators.perimeterAscending)
+    println("\nAll shapes by perimeter ascending:")
+    for (shape in result) {
+        println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
+    }
+    result = shapes.getAllSorted(ShapeComparators.perimeterDescending)
+    println("\nAll shapes by perimeter descending:")
+    for (shape in result) {
+        println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
+    }
+    result = shapes.getAllSorted(ShapeComparators.areaAscending)
+    println("\nAll shapes by area ascending:")
+    for (shape in result) {
+        println("${shape.javaClass} with area = ${shape.calcArea()}")
+    }
+    result = shapes.getAllSorted(ShapeComparators.areaDescending)
+    println("\nAll shapes by area descending:")
+    for (shape in result) {
+        println("${shape.javaClass} with area = ${shape.calcArea()}")
+    }
+
+    
+    val circles = ShapeCollector<Circle>()
+    circles.add(Circle(1.0))
+    circles.add(Circle(2.0))
+    result = circles.getAllSorted(ShapeComparators.radiusAscending)
+    println("\nAll shapes by area ascending:")
+    for (circle in result) {
+        println("${circle.javaClass} with radius = ${circle.radius}")
+    }
+    result = circles.getAllSorted(ShapeComparators.radiusDescending)
+    println("\nAll shapes by area descending:")
+    for (circle in result) {
+        println("${circle.javaClass} with radius = ${circle.radius}")
+    }
+    result = circles.getAllSorted(ShapeComparators.areaDescending)
+    println("\nAll shapes by area descending:")
+    for (circle in result) {
+        println("${circle.javaClass} with radius = ${circle.calcArea()}")
+    }
+
+    println("\nAll squares")
+    val squares = shapes.getAllByClass(Square::class.java)
+    for (shape in squares) {
+        println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
+    }
 }
