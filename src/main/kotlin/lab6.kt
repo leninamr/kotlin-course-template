@@ -6,7 +6,7 @@ class ShapeCollector<T : Shape> {
 
     fun getAll(): List<T> = allShapes.toList()
 
-    fun getAllSorted(comparator: Comparator<T>): List<T> = allShapes.sortedWith(comparator)
+    fun getAllSorted(comparator: Comparator<in T>): List<T> = allShapes.sortedWith(comparator)
 
     fun getAllByClass(shapeClass : Class<out T>) : List<T> = allShapes.filter { it.javaClass == shapeClass }.toList()
 }
