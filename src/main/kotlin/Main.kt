@@ -37,6 +37,7 @@ fun main() {
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
      */
 
+    /*
     //4th lab
     val matrixA = Matrix(
         arrayOf(
@@ -64,4 +65,23 @@ fun main() {
     matrixA += matrixB
     println("\nMatrix A+=B :\n" + matrixA.toString())
 
+    */
+    //lab 6
+    val shapes = ShapeCollector<Shape>()
+    shapes.add(Circle(5.0))
+    shapes.addAll(listOf(
+        Square(10.0),
+        Rectangle(2.0, 3.0),
+        Triangle(3.0, 4.0, 5.0),
+        Circle(30.0),
+        Square(15.0),
+        Rectangle(12.0,10.0),
+        Triangle(5.0, 6.0, 7.0)
+    ))
+
+    val result = shapes.getAll()
+    println("All shapes:")
+    for (shape in result) {
+        println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
+    }
 }
