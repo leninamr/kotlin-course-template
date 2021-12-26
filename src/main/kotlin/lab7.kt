@@ -24,7 +24,7 @@ object SerializeShapes {
         return json.encodeToString(inList)
     }
 
-    fun decode(inString: String): List<Shape> {
+    fun decode(inString: String): MutableList<Shape> {
         return json.decodeFromString(inString)
     }
 }
