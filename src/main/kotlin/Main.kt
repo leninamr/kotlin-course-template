@@ -37,7 +37,7 @@ fun main() {
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
      */
 
-
+/*
     //4th lab
     val matrixA = Matrix(
         arrayOf(
@@ -77,7 +77,7 @@ fun main() {
     println(matrixA == matrixB)
     matrixA += matrixB
     println("\nMatrix A+=B :\n" + matrixA.toString())
-
+*/
     /*
     //lab 6
     val shapes = ShapeCollector<Shape>()
@@ -145,12 +145,15 @@ fun main() {
     }
 
      */
-    /*
+    
 
     //lab 7
-    val path = "/Users/marina/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
-    var listOfShapes = listOf<Shape>()
-    listOfShapes = SerializeShapes.decode(FileIO.read(path))
-    */
-
+    val pathIn = "C:/Users/walke/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
+    val pathOut = "C:/Users/walke/IdeaProjects/kotlin-course-template/src/main/kotlin/output.json"
+    val listOfShapes: MutableList<Shape> = SerializeShapes.decode(FileIO.read(pathIn))
+    println(SerializeShapes.encode(listOfShapes))
+    listOfShapes.add(Square(10.0))
+    listOfShapes.add(Triangle(3.0, 4.0, 5.0))
+    FileIO.write(pathOut, SerializeShapes.encode(listOfShapes))
+    
 }
