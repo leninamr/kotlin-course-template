@@ -37,7 +37,7 @@ fun main() {
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
      */
 
-    /*
+
     //4th lab
     val matrixA = Matrix(
         arrayOf(
@@ -51,8 +51,21 @@ fun main() {
             arrayOf(30.0, 40.0)
         )
     )
+
+    val matrixC = Matrix(
+        arrayOf(
+            arrayOf(10.0, 20.0, 20.5),
+            arrayOf(30.0, 40.0, 40.5)
+        )
+    )
+
     println("Matrix A:\n" + matrixA.toString())
     println("Matrix B:\n" + matrixB.toString())
+    println("A * B =\n" + (matrixA * matrixB).toString())
+    matrixA *= matrixB
+    println(matrixA.toString())
+    println("Matrix C:\n" + matrixC.toString())
+    println("The dimensions (mxn) of matrix C is " + matrixC.numberOfRows +'x'+ matrixC.numberOfColumns + '\n')
     println("A + B =\n" + (matrixA + matrixB).toString())
     println("A - B =\n" + (matrixA - matrixB).toString())
     println("A * B =\n" + (matrixA * matrixB).toString())
@@ -65,7 +78,6 @@ fun main() {
     matrixA += matrixB
     println("\nMatrix A+=B :\n" + matrixA.toString())
 
-    */
     /*
     //lab 6
     val shapes = ShapeCollector<Shape>()
@@ -133,10 +145,12 @@ fun main() {
     }
 
      */
+    /*
+
     //lab 7
     val path = "/Users/marina/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
     var listOfShapes = listOf<Shape>()
     listOfShapes = SerializeShapes.decode(FileIO.read(path))
-
+    */
 
 }

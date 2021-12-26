@@ -3,6 +3,11 @@ class Matrix(
 ) {
     private var matrix: Array<Array<Double>> = emptyArray()
 
+    val numberOfRows: Int
+        get() = matrix.size
+    val numberOfColumns: Int
+        get() = matrix[0].size
+
     init {
         if (initMatrix.isEmpty() or initMatrix[0].isEmpty()) throw IllegalArgumentException("The entered matrix is empty")
         val length = initMatrix[0].size
@@ -22,11 +27,14 @@ class Matrix(
         if ((i >= matrix.size) or (j >= matrix[0].size)) throw IllegalArgumentException("The entered index out of bounds")
         matrix[i][j] = value
     }
-
-    fun getSizes(): Pair<Int, Int> {
-        return Pair(matrix.size, matrix[0].size)
+/*
+    fun getNumberOfRows(): Int {
+        return matrix.size
     }
-
+    fun getNumberOfColumns(): Int {
+        return matrix[0].size
+    }
+ */
     operator fun plus(other: Matrix): Matrix {
         val result = Matrix(other.matrix)
         if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
@@ -115,7 +123,7 @@ class Matrix(
     }
 
     operator fun timesAssign(other: Matrix) {
-        this.times(other)
+        this.matrix = this.times(other).matrix
     }
 
     operator fun div(scalar: Double): Matrix {
