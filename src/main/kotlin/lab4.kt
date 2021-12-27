@@ -1,5 +1,5 @@
 class Matrix(
-    initMatrix: Array<Array<Double>>
+    initMatrix: Array<Array<Double>> = emptyArray()
 ) {
     private var matrix: Array<Array<Double>> = emptyArray()
 
@@ -19,25 +19,18 @@ class Matrix(
     }
 
     operator fun get(i: Int, j: Int): Double {
-        if ((i >= matrix.size) or (j >= matrix[0].size)) throw IllegalArgumentException("The entered index is out of bounds")
+        if ((i >= numberOfRows) or (j >= numberOfColumns)) throw IllegalArgumentException("The entered index is out of bounds")
         return matrix[i][j]
     }
 
     operator fun set(i: Int, j: Int, value: Double) {
-        if ((i >= matrix.size) or (j >= matrix[0].size)) throw IllegalArgumentException("The entered index out of bounds")
+        if ((i >= numberOfRows) or (j >= numberOfColumns)) throw IllegalArgumentException("The entered index out of bounds")
         matrix[i][j] = value
     }
-/*
-    fun getNumberOfRows(): Int {
-        return matrix.size
-    }
-    fun getNumberOfColumns(): Int {
-        return matrix[0].size
-    }
- */
+
     operator fun plus(other: Matrix): Matrix {
         val result = Matrix(other.matrix)
-        if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
+        if ((other.numberOfRows != numberOfRows) or (other.numberOfColumns != numberOfColumns)) throw IllegalArgumentException(
             "The dimensions of matrices are not converge"
         )
         else {
@@ -49,7 +42,7 @@ class Matrix(
     }
 
     operator fun plusAssign(other: Matrix) {
-        if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
+        if ((other.numberOfRows != numberOfRows) or (other.numberOfColumns != numberOfColumns)) throw IllegalArgumentException(
             "The dimensions of matrices are not converge"
         )
         else {
@@ -61,7 +54,7 @@ class Matrix(
 
     operator fun minus(other: Matrix): Matrix {
         val result = Matrix(other.matrix)
-        if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
+        if ((other.numberOfRows != numberOfRows) or (other.numberOfColumns != numberOfColumns)) throw IllegalArgumentException(
             "The dimensions of matrices are not converge"
         )
         else {
@@ -73,7 +66,7 @@ class Matrix(
     }
 
     operator fun minusAssign(other: Matrix) {
-        if ((other.matrix.size != matrix.size) or (other.matrix[0].size != matrix[0].size)) throw IllegalArgumentException(
+        if ((other.numberOfRows != numberOfRows) or (other.numberOfColumns != numberOfColumns)) throw IllegalArgumentException(
             "The dimensions of matrices are not converge"
         )
         else {
@@ -99,11 +92,11 @@ class Matrix(
 
     operator fun times(other: Matrix): Matrix {
         val result: Matrix
-        if (other.matrix.size != matrix[0].size) throw IllegalArgumentException(
+        if (other.numberOfRows != numberOfColumns) throw IllegalArgumentException(
             "The dimensions of matrices are wrong"
         )
         else {
-            result = Matrix(Array(matrix.size) { Array(other.matrix[0].size) { 0.0 } })
+            result = Matrix(Array(numberOfRows) { Array(other.numberOfColumns) { 0.0 } })
             for (i in matrix.indices)
                 for (j in matrix[i].indices) {
                     for (k in matrix[i].indices) {

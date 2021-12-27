@@ -37,7 +37,7 @@ fun main() {
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
      */
 
-/*
+
     //4th lab
     val matrixA = Matrix(
         arrayOf(
@@ -62,8 +62,8 @@ fun main() {
     println("Matrix A:\n" + matrixA.toString())
     println("Matrix B:\n" + matrixB.toString())
     println("A * B =\n" + (matrixA * matrixB).toString())
-    matrixA *= matrixB
-    println(matrixA.toString())
+    //matrixA *= matrixB
+    //println(matrixA.toString())
     println("Matrix C:\n" + matrixC.toString())
     println("The dimensions (mxn) of matrix C is " + matrixC.numberOfRows +'x'+ matrixC.numberOfColumns + '\n')
     println("A + B =\n" + (matrixA + matrixB).toString())
@@ -77,8 +77,8 @@ fun main() {
     println(matrixA == matrixB)
     matrixA += matrixB
     println("\nMatrix A+=B :\n" + matrixA.toString())
-*/
-    /*
+
+/*
     //lab 6
     val shapes = ShapeCollector<Shape>()
     shapes.add(Circle(5.0))
@@ -144,16 +144,37 @@ fun main() {
         println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
     }
 
-     */
-    
 
+
+
+ */
+/*
     //lab 7
-    val pathIn = "C:/Users/walke/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
-    val pathOut = "C:/Users/walke/IdeaProjects/kotlin-course-template/src/main/kotlin/output.json"
-    val listOfShapes: MutableList<Shape> = SerializeShapes.decode(FileIO.read(pathIn))
+    val pathIn = "C:/Users/Marina/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
+    val pathOut = "C:/Users/Marina/IdeaProjects/kotlin-course-template/src/main/kotlin/output.json"
+
+    val matrixA = Matrix(
+        arrayOf(
+            arrayOf(1.0, 2.0),
+            arrayOf(3.0, 4.0)
+        )
+    )
+    println(SerializeShapes.encode(matrixA))
+    FileIO.write(pathOut, SerializeShapes.encode(matrixA))
+    println(SerializeShapes.decode(FileIO.read(pathIn)))
+
+
+
+
+ */
+/*val listOfShapes: MutableList<Shape> = SerializeShapes.decode(FileIO.read(pathIn))
     println(SerializeShapes.encode(listOfShapes))
     listOfShapes.add(Square(10.0))
     listOfShapes.add(Triangle(3.0, 4.0, 5.0))
     FileIO.write(pathOut, SerializeShapes.encode(listOfShapes))
-    
+
+
+     */
+
+
 }
