@@ -113,9 +113,11 @@ class LibraryServiceImplement : LibraryService {
     override fun takeBook(user: User, book: Book) {
         if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
         if (!listOfUsers.contains(user)) throw IllegalStateException("There's no such a user")
-        if (mapOfBooks.values.count() {
-                ((it as Status.UsedBy).user == user)
-            } <= maxCountOfBooks
+        if (mapOfBooks[book] !is Status.Available) throw IllegalStateException("This book is not available")
+
+        if (mapOfBooks.filter {
+                ((it.value is Status.UsedBy) && (it.value as Status.UsedBy).user == user)
+            }.size <= maxCountOfBooks
         )
             setBookStatus(book, Status.UsedBy(user))
         else throw IllegalStateException("The one user can have only $maxCountOfBooks books")
