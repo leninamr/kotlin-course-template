@@ -70,37 +70,59 @@ class LibraryServiceImplement : LibraryService {
         }
         return listOfBooks
     }
-//TODO  проверки возможности выполнения в функциях и проверять целостность данных
+    
+    //TODO main
     override fun getBookStatus(book: Book): Status {
-        //TODO доделать
-        //return mapOfBooks[Book]
+        if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
+        return mapOfBooks[book]!!
     }
 
-    override fun getAllBookStatuses(): Map<Book, Status> {
-
+     override fun getAllBookStatuses(): Map<Book, Status> {
+        return mapOfBooks
     }
 
     override fun setBookStatus(book: Book, status: Status) {
-
+        if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
+        mapOfBooks.replace(book, status)
     }
 
-    override fun addBook(book: Book, status: Status = Status.Available) {
-
+    override fun addBook(book: Book, status: Status) {
+        if (mapOfBooks.contains(book)) throw IllegalStateException("There's already has this book")
+        mapOfBooks[book] = status
     }
 
     override fun registerUser(firstName: String, middleName: String, lastName: String) {
-
+        if (listOfUsers.contains(
+                User(
+                    firstName,
+                    middleName,
+                    lastName
+                )
+            )
+        ) throw IllegalStateException("This user is already at list")
+        listOfUsers.add(User(firstName, middleName, lastName))
     }
 
     override fun unregisterUser(user: User) {
+        if (!listOfUsers.contains(user)) throw IllegalStateException("There's no such a user")
+        listOfUsers.remove(user)
 
     }
 
     override fun takeBook(user: User, book: Book) {
-
+        if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
+        if (!listOfUsers.contains(user)) throw IllegalStateException("There's no such a user")
+        if (mapOfBooks.values.count() {
+                ((it as Status.UsedBy).user == user)
+            } <= maxCountOfBooks
+        )
+            setBookStatus(book, Status.UsedBy(user))
+        else throw IllegalStateException("The one user can have only $maxCountOfBooks books")
     }
 
     override fun returnBook(book: Book) {
-
+        if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
+        if (mapOfBooks[book] !is Status.UsedBy) throw IllegalStateException("This book is not taken")
+        setBookStatus(book, Status.Available)
     }
 }
