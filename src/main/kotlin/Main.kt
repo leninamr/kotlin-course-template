@@ -1,3 +1,5 @@
+import java.time.Year
+
 fun main() {
     /*
     //1st lab
@@ -37,7 +39,7 @@ fun main() {
     println("The shape with largest perimeter is ${maxPerimeter::class.java.simpleName}")
      */
 
-
+    /*
     //4th lab
     val matrixA = Matrix(
         arrayOf(
@@ -77,8 +79,8 @@ fun main() {
     println(matrixA == matrixB)
     matrixA += matrixB
     println("\nMatrix A+=B :\n" + matrixA.toString())
-
-/*
+    */
+    /*
     //lab 6
     val shapes = ShapeCollector<Shape>()
     shapes.add(Circle(5.0))
@@ -143,12 +145,9 @@ fun main() {
     for (shape in squares) {
         println("${shape.javaClass} with perimeter = ${shape.calcPerimeter()}")
     }
-
-
-
-
- */
-/*
+    */
+    
+    /*
     //lab 7
     val pathIn = "C:/Users/Marina/IdeaProjects/kotlin-course-template/src/main/kotlin/input.json"
     val pathOut = "C:/Users/Marina/IdeaProjects/kotlin-course-template/src/main/kotlin/output.json"
@@ -172,9 +171,21 @@ fun main() {
     listOfShapes.add(Square(10.0))
     listOfShapes.add(Triangle(3.0, 4.0, 5.0))
     FileIO.write(pathOut, SerializeShapes.encode(listOfShapes))
+    */
+    //lab 5
+    val library = LibraryServiceImplement()
+    val book1 = Book("Dandelion wine",Author("Ray","","Bradbury"),Genre.ScienceFiction,Year.of(1964))
 
+    val book2 = Book("Master and Margarita",Author("Mikhail","Afanasievich","Bulgakov"),Genre.Novel,Year.of(1954))
+    library.addBook(book1,Status.Available)
+    library.addBook(book2,Status.Restoration)
 
-     */
+    library.registerUser("David","Robert","Jones")
+    library.registerUser("Ivan","Pavlovich","Lenin")
+    println("\nAll statuses: ")
+    library.getAllBookStatuses().forEach { println("${it.key.name} is ${it.value}") }
 
+    println("\n" + library.findBooks( genre = Genre.ScienceFiction))
+    println("\nAvailable now:\n" + library.getAllAvailableBooks())
 
 }
