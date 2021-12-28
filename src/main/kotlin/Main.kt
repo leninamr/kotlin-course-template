@@ -185,7 +185,10 @@ fun main() {
     println("\nAll statuses: ")
     library.getAllBookStatuses().forEach { println("${it.key.name} is ${it.value}") }
 
-    println("\n" + library.findBooks( genre = Genre.ScienceFiction))
+    println("All of the books in the library which genre is Science Fiction\n" + library.findBooks( genre = Genre.ScienceFiction))
     println("\nAvailable now:\n" + library.getAllAvailableBooks())
+    library.takeBook(User("David","Robert","Jones"), book1)
+    println("\nAll statuses: ")
+    library.getAllBookStatuses().forEach { println("${it.key.name} is ${it.value}") }
 
 }
