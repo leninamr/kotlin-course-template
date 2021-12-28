@@ -13,7 +13,8 @@ enum class Genre {
     Drama,
     Comedy,
     Horror,
-    Comics
+    Comics,
+    Novel
 }
 
 sealed class Status {
