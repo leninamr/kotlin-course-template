@@ -45,7 +45,7 @@ interface LibraryService {
 }
 
 class LibraryServiceImplement : LibraryService {
-    //TODO ограничение в три кнги
+    private val maxCountOfBooks = 3
     private val listOfUsers = mutableListOf<User>()
     private val mapOfBooks = mutableMapOf<Book, Status>()
     override fun findBooks(name: String, author: Author, year: Year?, genre: Genre?) {
