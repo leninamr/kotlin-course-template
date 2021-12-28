@@ -26,7 +26,7 @@ sealed class Status {
 
 interface LibraryService {
 
-    fun findBooks(name: String = "", author: Author = Author(), year: Year? = null, genre: Genre? = null)
+    fun findBooks(name: String = "", author: Author = Author(), year: Year? = null, genre: Genre? = null) : List<Book>
 
     fun getAllBooks(): List<Book>
     fun getAllAvailableBooks(): List<Book>
@@ -49,10 +49,11 @@ class LibraryServiceImplement : LibraryService {
     private val maxCountOfBooks = 3
     private val listOfUsers = mutableListOf<User>()
     private val mapOfBooks = mutableMapOf<Book, Status>()
-    override fun findBooks(name: String, author: Author, year: Year?, genre: Genre?) {
+    override fun findBooks(name: String, author: Author, year: Year?, genre: Genre?) : List<Book> {
         val result = mapOfBooks.filter {
             (name == "" || name == it.key.name) && (author == Author() || author == it.key.author) && (year == null || year == it.key.year) && (genre == null || genre == it.key.genre)
-        }
+        }.keys.toList()
+        return result
     }
 
     override fun getAllBooks(): List<Book> {
@@ -72,7 +73,6 @@ class LibraryServiceImplement : LibraryService {
         return listOfBooks
     }
     
-    //TODO main
     override fun getBookStatus(book: Book): Status {
         if (!mapOfBooks.contains(book)) throw IllegalStateException("There's no such a book")
         return mapOfBooks[book]!!
@@ -88,7 +88,7 @@ class LibraryServiceImplement : LibraryService {
     }
 
     override fun addBook(book: Book, status: Status) {
-        if (mapOfBooks.contains(book)) throw IllegalStateException("There's already has this book")
+        if (mapOfBooks.contains(book)) throw IllegalStateException("There's already such a book here")
         mapOfBooks[book] = status
     }
 
